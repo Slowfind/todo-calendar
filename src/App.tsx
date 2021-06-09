@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Box, Container } from '@material-ui/core'
+import React from 'react'
+import { Header } from './components/Header'
+import { Home } from './pages/Home'
 
+/* туду
+1. сделать липкую шапку с загаловком и кнопкой назад // check
+2. сделать чтобы менялось название заголовка, и кнопка назад появлялась на других страницах
+3. создать нормальное оформление карточек дней
+4. сделать через редакс
+5. создать страницу задач
+*/
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Box component="main">
+            <Header />
+            <Box pt={5}>
+                <Container>
+                    <Home />
+                </Container>
+            </Box>
+        </Box>
+    )
 }
 
-export default App;
+export default App
