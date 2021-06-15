@@ -1,14 +1,11 @@
 import { Box, Container } from '@material-ui/core'
 import React from 'react'
-import { Header } from './components/Header'
+import Header from './components/Header'
 import { Home } from './pages/Home'
 
 /* туду
-1. сделать липкую шапку с загаловком и кнопкой назад // check
-2. сделать чтобы менялось название заголовка, и кнопка назад появлялась на других страницах
-3. создать нормальное оформление карточек дней
-4. сделать через редакс
-5. создать страницу задач
+1. подключить библиотеку moment.js
+2. сделать месяца через json-server редакс-сагой
 */
 function App() {
     return (

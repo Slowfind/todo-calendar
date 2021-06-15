@@ -14,8 +14,8 @@ export const theme = createMuiTheme({
             'sans-serif',
         ].join(', '),
         body1: {
-            fontSize: '2.4rem',
-            fontWeight: 700,
+            fontSize: '1.4rem',
+            fontWeight: 500,
             lineHeight: 1.4,
         },
         h1: {

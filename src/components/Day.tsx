@@ -5,7 +5,7 @@ import ListItem from '@material-ui/core/ListItem/ListItem'
 import ListItemText from '@material-ui/core/ListItemText/ListItemText'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const days: number[] = Array.from({ length: 31 }, (_, i) => i + 1)
 const useStyles = makeStyles(() => ({
@@ -25,11 +25,14 @@ const useStyles = makeStyles(() => ({
 }))
 export const Day: React.FC = () => {
     const classes = useStyles()
+    let params: { id: string } = useParams()
+    let id = params.id
+
     return (
         <Grid container spacing={4}>
             {days.map((item, i) => (
                 <Grid key={item} item xs={3}>
-                    <Link className={`${classes.link} ${classes.dayCard}`} to={`/${item}`}>
+                    <Link className={`${classes.link} ${classes.dayCard}`} to={`/${id}/${item}`}>
                         <Box fontWeight="700" position="absolute" bottom="0" right="0" p={1}>
                             <Box component="span">{item}</Box>
                         </Box>
