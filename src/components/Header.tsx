@@ -6,8 +6,10 @@ import { BackButton } from './BackButton'
 
 const Header: React.FC = ({ location }: any) => {
     const { pathname } = location
+
     const pathnameTitle = pathname.replace(/[^a-zа-яё\s]/gi, ' ')
     const pathnameNumber = pathname.replace(/\D/g, '')
+
     return (
         <AppBar color="primary" position="sticky">
             <Container disableGutters>

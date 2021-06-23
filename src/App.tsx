@@ -4,8 +4,7 @@ import Header from './components/Header'
 import { Home } from './pages/Home'
 
 /* туду
-1. подключить библиотеку moment.js
-2. сделать месяца через json-server редакс-сагой
+1. создать через редакс сагу туду лист, с помощью json-server
 */
 function App() {
     return (
