@@ -4,7 +4,7 @@ import Header from './components/Header'
 import { Home } from './pages/Home'
 
 /* туду
-1. создать через редакс сагу туду лист, с помощью json-server
+1. Сделать через редакс дни
 */
 function App() {
     return (

@@ -12,13 +12,13 @@ const date: IDate = {
     yearNumber: moment().year(),
     monthNumber: +moment().month('november').format('MM'),
 
-    month(): string {
+    month() {
         return moment(`${this.yearNumber}-${this.monthNumber}`).format('YYYY-MM')
     },
 }
 
 export const DateApi = {
-    fetchDate(): any {
+    fetchDate() {
         return date
     },
 }

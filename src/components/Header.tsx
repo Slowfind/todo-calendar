@@ -6,8 +6,9 @@ import { BackButton } from './BackButton'
 
 const Header: React.FC = ({ location }: any) => {
     const { pathname } = location
-
-    const pathnameTitle = pathname.replace(/[^a-zа-яё\s]/gi, ' ')
+    const monthRu = location?.state
+    console.log(pathname)
+    // const pathnameTitle = pathname.replace(/[^a-zа-яё\s]/gi, ' ')
     const pathnameNumber = pathname.replace(/\D/g, '')
 
     return (
@@ -23,7 +24,7 @@ const Header: React.FC = ({ location }: any) => {
                                 <BackButton />
                             </Box>
                             <Box>
-                                <Typography variant="h1">{pathnameTitle}</Typography>
+                                <Typography variant="h1">{monthRu}</Typography>
                             </Box>
                         </Route>
                         <Route path="/:id/:id" exact>
@@ -32,7 +33,7 @@ const Header: React.FC = ({ location }: any) => {
                             </Box>
                             <Box>
                                 <Typography variant="h1">
-                                    TODO LIST {pathnameNumber} {pathnameTitle}
+                                    TODO LIST {pathnameNumber} {monthRu}
                                 </Typography>
                             </Box>
                         </Route>

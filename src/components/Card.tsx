@@ -36,16 +36,17 @@ export const Card: React.FC<IDateState<object>> = () => {
     React.useEffect(() => {
         dispatch(fetchDate())
     }, [dispatch])
-
     return (
         <Grid container spacing={4}>
             {!isLoading ? (
-                monthRu &&
-                monthRu.map((item, i) => (
+                monthRu?.map((item, i) => (
                     <Grid key={item} item xs={3}>
                         <Box borderRadius={4} boxShadow={5} className={classes.card}>
                             <Link
-                                to={`/${monthEu[i].toLowerCase()}`}
+                                to={{
+                                    pathname: `/${monthEu[i].toLowerCase()}`,
+                                    state: monthRu[i],
+                                }}
                                 className={`${classes.textCenter} ${classes.padding4} ${classes.link}`}
                             >
                                 {item}

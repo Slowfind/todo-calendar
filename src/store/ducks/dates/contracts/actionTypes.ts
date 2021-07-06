@@ -2,9 +2,9 @@ import { Action } from 'redux'
 import { IDate, IDateState, LoadingState } from './state'
 
 export enum DatesActionsType {
-    SET_DATES = 'dates/SET_DATES',
-    SET_LOADING = 'dates/SET_LOADING',
-    FETCH_DATE = 'dates/FETCH_DATE',
+    SET_DATES = 'date/SET_DATES',
+    SET_LOADING = 'date/SET_LOADING',
+    FETCH_DATE = 'date/FETCH_DATE',
 }
 
 export interface ISetDateAction extends Action<DatesActionsType> {
