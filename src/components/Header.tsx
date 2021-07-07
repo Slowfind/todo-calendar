@@ -4,13 +4,8 @@ import React from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import { BackButton } from './BackButton'
 
-const Header: React.FC = ({ location }: any) => {
-    const { pathname } = location
-    const monthRu = location?.state
-    console.log(pathname)
-    // const pathnameTitle = pathname.replace(/[^a-zа-яё\s]/gi, ' ')
+const Header: React.FC = ({ location: { pathname, state } }: any) => {
     const pathnameNumber = pathname.replace(/\D/g, '')
-
     return (
         <AppBar color="primary" position="sticky">
             <Container disableGutters>
@@ -24,7 +19,7 @@ const Header: React.FC = ({ location }: any) => {
                                 <BackButton />
                             </Box>
                             <Box>
-                                <Typography variant="h1">{monthRu}</Typography>
+                                <Typography variant="h1">{state}</Typography>
                             </Box>
                         </Route>
                         <Route path="/:id/:id" exact>
@@ -33,7 +28,7 @@ const Header: React.FC = ({ location }: any) => {
                             </Box>
                             <Box>
                                 <Typography variant="h1">
-                                    TODO LIST {pathnameNumber} {monthRu}
+                                    TODO LIST {pathnameNumber} {state}
                                 </Typography>
                             </Box>
                         </Route>

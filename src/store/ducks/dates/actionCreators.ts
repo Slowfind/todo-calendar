@@ -6,7 +6,7 @@ export const setDateLoading = (payload: LoadingState): ISetLoadingDateAction => 
     payload,
 })
 
-export const setDate = (payload: IDateState<IDate>['item']): ISetDateAction => ({
+export const setDate = (payload: IDateState<IDate>['date']): ISetDateAction => ({
     type: DatesActionsType.SET_DATES,
     payload,
 })

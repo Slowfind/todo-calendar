@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem/ListItem'
 import ListItemText from '@material-ui/core/ListItemText/ListItemText'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(() => ({
     link: {
@@ -24,10 +24,13 @@ const useStyles = makeStyles(() => ({
     },
 }))
 
-export const Day: React.FC = () => {
+export const Day: React.FC = ({
+    location: { state },
+    match: {
+        params: { id },
+    },
+}: any) => {
     const classes = useStyles()
-    let params: { id: string } = useParams()
-    let id = params.id
     let monthNumber = moment().month(id).format('MM')
     let yearNumber = moment().year()
     let month = moment(`${yearNumber}-${monthNumber}`).format('YYYY-MM')
@@ -38,11 +41,11 @@ export const Day: React.FC = () => {
     }
     return (
         <Grid container spacing={4}>
-            {getDaysByMonth(month).map((item) => (
-                <Grid key={item} item xs={3}>
-                    <Link className={`${classes.link} ${classes.dayCard}`} to={`/${id}/${item}`}>
+            {getDaysByMonth(month).map((i) => (
+                <Grid key={i} item xs={3}>
+                    <Link className={`${classes.link} ${classes.dayCard}`} to={`/${id}/${i}`}>
                         <Box fontWeight="700" position="absolute" bottom="0" right="0" p={1}>
-                            <Box component="span">{item}</Box>
+                            <Box component="span">{i}</Box>
                         </Box>
                         <Box>
                             <List dense component="nav" aria-label="main mailbox folders">

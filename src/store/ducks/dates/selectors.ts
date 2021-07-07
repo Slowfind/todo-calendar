@@ -9,8 +9,9 @@ export const selectIsLoaded = (state: RootState): boolean => selectLoadingState(
 
 export const selectIsLoading = (state: RootState): boolean => selectLoadingState(state) === LoadingState.LOADING
 
-export const selectDateItem = (state: RootState): IDateState<IDate>['item'] => selectDate(state).item
-
-export const selectDateMonthEu = (state: RootState): string[] => selectDateItem(state).monthEu
-
-export const selectDateMonthRu = (state: RootState): string[] => selectDateItem(state).monthRu
+export const selectMonthRu = (state: RootState): IDate['monthRu'] => {
+    return selectDate(state).date.monthRu
+}
+export const selectMonthEu = (state: RootState): IDate['monthEu'] => {
+    return selectDate(state).date.monthEu
+}

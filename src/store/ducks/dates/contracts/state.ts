@@ -9,11 +9,9 @@ export interface IDate {
     monthRu: string[]
     monthEu: string[]
     yearNumber: number
-    monthNumber: number
-    month: () => string
 }
 
 export interface IDateState<T> {
-    item: T
+    date: T
     loadingState: LoadingState
 }

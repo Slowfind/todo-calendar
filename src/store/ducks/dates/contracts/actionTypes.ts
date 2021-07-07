@@ -9,7 +9,7 @@ export enum DatesActionsType {
 
 export interface ISetDateAction extends Action<DatesActionsType> {
     type: DatesActionsType.SET_DATES
-    payload: IDateState<IDate>['item']
+    payload: IDateState<IDate>['date']
 }
 
 export interface ISetLoadingDateAction extends Action<DatesActionsType> {

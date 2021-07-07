@@ -6,8 +6,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchDate } from '../store/ducks/dates/actionCreators'
-import { IDateState } from '../store/ducks/dates/contracts/state'
-import { selectDateMonthEu, selectDateMonthRu, selectIsLoading } from '../store/ducks/dates/selectors'
+import { IDate, IDateState } from '../store/ducks/dates/contracts/state'
+import { selectIsLoading, selectMonthEu, selectMonthRu } from '../store/ducks/dates/selectors'
 
 const useStyles = makeStyles(() => ({
     link: {
@@ -27,15 +27,19 @@ const useStyles = makeStyles(() => ({
         fontWeight: 700,
     },
 }))
-export const Card: React.FC<IDateState<object>> = () => {
+export const Card: React.FC<IDateState<IDate>> = () => {
     const classes = useStyles()
-    const monthEu = useSelector(selectDateMonthEu)
-    const monthRu = useSelector(selectDateMonthRu)
-    const isLoading = useSelector(selectIsLoading)
+
     const dispatch = useDispatch()
+
+    const monthEu = useSelector(selectMonthEu)
+    const monthRu = useSelector(selectMonthRu)
+    const isLoading = useSelector(selectIsLoading)
+
     React.useEffect(() => {
         dispatch(fetchDate())
     }, [dispatch])
+
     return (
         <Grid container spacing={4}>
             {!isLoading ? (
