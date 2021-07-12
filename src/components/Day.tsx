@@ -1,4 +1,3 @@
-import moment from 'moment'
 import Box from '@material-ui/core/Box/Box'
 import Grid from '@material-ui/core/Grid/Grid'
 import List from '@material-ui/core/List/List'
@@ -7,6 +6,10 @@ import ListItemText from '@material-ui/core/ListItemText/ListItemText'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { setMonth } from '../store/ducks/dates/actionCreators'
+import { selectMonth } from '../store/ducks/dates/selectors'
+import { date } from '../services/api/date'
 
 const useStyles = makeStyles(() => ({
     link: {
@@ -31,35 +34,35 @@ export const Day: React.FC = ({
     },
 }: any) => {
     const classes = useStyles()
-    let monthNumber = moment().month(id).format('MM')
-    let yearNumber = moment().year()
-    let month = moment(`${yearNumber}-${monthNumber}`).format('YYYY-MM')
+    const dispatch = useDispatch()
+    const month: string | null = useSelector(selectMonth)
 
-    const getDaysByMonth = (month: string) => {
-        const daysInMonth = moment(month).daysInMonth()
-        return Array.from({ length: daysInMonth }, (_, i) => i + 1)
-    }
+    React.useEffect(() => {
+        id && dispatch(setMonth(id))
+    }, [id, dispatch])
+
     return (
         <Grid container spacing={4}>
-            {getDaysByMonth(month).map((i) => (
-                <Grid key={i} item xs={3}>
-                    <Link className={`${classes.link} ${classes.dayCard}`} to={`/${id}/${i}`}>
-                        <Box fontWeight="700" position="absolute" bottom="0" right="0" p={1}>
-                            <Box component="span">{i}</Box>
-                        </Box>
-                        <Box>
-                            <List dense component="nav" aria-label="main mailbox folders">
-                                <ListItem>
-                                    <ListItemText primary="Выучить реакт" />
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemText primary="Выучить тайпскрипт" />
-                                </ListItem>
-                            </List>
-                        </Box>
-                    </Link>
-                </Grid>
-            ))}
+            {month &&
+                date(month).map((i) => (
+                    <Grid key={i} item xs={3}>
+                        <Link className={`${classes.link} ${classes.dayCard}`} to={`/${id}/${i}`}>
+                            <Box fontWeight="700" position="absolute" bottom="0" right="0" p={1}>
+                                <Box component="span">{i}</Box>
+                            </Box>
+                            <Box>
+                                <List dense component="nav" aria-label="main mailbox folders">
+                                    <ListItem>
+                                        <ListItemText primary="Выучить реакт" />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemText primary="Выучить тайпскрипт" />
+                                    </ListItem>
+                                </List>
+                            </Box>
+                        </Link>
+                    </Grid>
+                ))}
         </Grid>
     )
 }

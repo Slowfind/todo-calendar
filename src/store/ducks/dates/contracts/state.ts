@@ -8,10 +8,10 @@ export enum LoadingState {
 export interface IDate {
     monthRu: string[]
     monthEu: string[]
-    yearNumber: number
 }
 
-export interface IDateState<T> {
-    date: T
+export interface IDateState {
+    month: string | null
+    date: IDate
     loadingState: LoadingState
 }

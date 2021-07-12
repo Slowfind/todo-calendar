@@ -4,9 +4,8 @@ import Header from './components/Header'
 import { Home } from './pages/Home'
 
 /* туду
-1. Сделать через редакс дни
-2. Гет запрос постов
-3. Пост запрос постов
+1. Создаем апи дней
+2. Создаем
 */
 function App() {
     return (

@@ -27,15 +27,14 @@ const useStyles = makeStyles(() => ({
         fontWeight: 700,
     },
 }))
-export const Card: React.FC<IDateState<IDate>> = () => {
+export const Card: React.FC<IDateState> = () => {
     const classes = useStyles()
 
     const dispatch = useDispatch()
 
-    const monthEu = useSelector(selectMonthEu)
-    const monthRu = useSelector(selectMonthRu)
+    const monthEu: IDate['monthEu'] = useSelector(selectMonthEu)
+    const monthRu: IDate['monthRu'] = useSelector(selectMonthRu)
     const isLoading = useSelector(selectIsLoading)
-
     React.useEffect(() => {
         dispatch(fetchDate())
     }, [dispatch])
