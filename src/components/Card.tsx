@@ -48,7 +48,12 @@ export const Card: React.FC<IDateState> = () => {
                             <Link
                                 to={{
                                     pathname: `/${monthEu[i].toLowerCase()}`,
-                                    state: monthRu[i],
+                                    state: {
+                                        months: {
+                                            monthRu: monthRu[i],
+                                            monthEu: monthEu[i],
+                                        },
+                                    },
                                 }}
                                 className={`${classes.textCenter} ${classes.padding4} ${classes.link}`}
                             >

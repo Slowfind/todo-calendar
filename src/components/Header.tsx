@@ -2,10 +2,17 @@ import { AppBar, Toolbar, Typography, Container } from '@material-ui/core'
 import Box from '@material-ui/core/Box/Box'
 import React from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
+import { Pluralize } from '../services/api/date'
 import { BackButton } from './BackButton'
 
 const Header: React.FC = ({ location: { pathname, state } }: any) => {
-    const pathnameNumber = pathname.replace(/\D/g, '')
+    const pluralizeMonths = (state: any, pathname: any) => {
+        const pathnameNumber = pathname.replace(/\D/g, '')
+        if (state && pathname !== undefined) {
+            return new Pluralize(state, pathnameNumber).pluralizeMonths
+        }
+        return null
+    }
     return (
         <AppBar color="primary" position="sticky">
             <Container disableGutters>
@@ -19,7 +26,7 @@ const Header: React.FC = ({ location: { pathname, state } }: any) => {
                                 <BackButton />
                             </Box>
                             <Box>
-                                <Typography variant="h1">{state}</Typography>
+                                <Typography variant="h1">{state?.months?.monthRu}</Typography>
                             </Box>
                         </Route>
                         <Route path="/:id/:id" exact>
@@ -27,9 +34,7 @@ const Header: React.FC = ({ location: { pathname, state } }: any) => {
                                 <BackButton />
                             </Box>
                             <Box>
-                                <Typography variant="h1">
-                                    TODO LIST {pathnameNumber} {state}
-                                </Typography>
+                                <Typography variant="h1">TODO LIST {pluralizeMonths(state, pathname)}</Typography>
                             </Box>
                         </Route>
                     </Switch>

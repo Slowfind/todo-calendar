@@ -4,8 +4,7 @@ import Header from './components/Header'
 import { Home } from './pages/Home'
 
 /* туду
-1. Создаем апи дней
-2. Создаем
+1. сделать через json-server посты
 */
 function App() {
     return (
