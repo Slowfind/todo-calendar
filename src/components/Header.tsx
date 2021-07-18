@@ -34,7 +34,7 @@ const Header: React.FC = ({ location: { pathname, state } }: any) => {
                                 <BackButton />
                             </Box>
                             <Box>
-                                <Typography variant="h1">TODO LIST {pluralizeMonths(state, pathname)}</Typography>
+                                <Typography variant="h1">Список дел на {pluralizeMonths(state, pathname)}</Typography>
                             </Box>
                         </Route>
                     </Switch>
