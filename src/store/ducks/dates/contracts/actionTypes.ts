@@ -1,16 +1,15 @@
 import { Action } from 'redux'
-import { IDateState, LoadingState } from './state'
+import { IMonthsState, LoadingState } from './state'
 
 export enum DatesActionsType {
     SET_DATES = 'date/SET_DATES',
     SET_LOADING = 'date/SET_LOADING',
     FETCH_DATE = 'date/FETCH_DATE',
-    FETCH_MONTH = 'date/FETCH_MONTH',
 }
 
 export interface ISetDateAction extends Action<DatesActionsType> {
     type: DatesActionsType.SET_DATES
-    payload: IDateState['date']
+    payload: IMonthsState['months']
 }
 
 export interface ISetLoadingDateAction extends Action<DatesActionsType> {
@@ -20,9 +19,4 @@ export interface ISetLoadingDateAction extends Action<DatesActionsType> {
 
 export interface IFetchDateAction extends Action<DatesActionsType> {
     type: DatesActionsType.FETCH_DATE
-}
-
-export interface IMonthAction extends Action<DatesActionsType> {
-    type: DatesActionsType.FETCH_MONTH
-    payload: string | null
 }

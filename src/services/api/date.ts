@@ -1,31 +1,14 @@
 import moment from 'moment'
 import 'moment/min/locales.min'
-import { IDate } from '../../store/ducks/dates/contracts/state'
+import { IMonths } from '../../store/ducks/dates/contracts/state'
+import axios from 'axios'
 
-const locale = (str: string) => {
-    return Array.apply(0, Array(12)).map((_, i) => moment().locale(str).month(i).format('MMMM'))
-}
-export const date = (currentMonth: string) => {
-    let monthNumber = moment().month(currentMonth).format('MM')
-    let yearNumber = moment().year()
-    let month = moment(`${yearNumber}-${monthNumber}`).format('YYYY-MM')
-    // console.log(month, 'm,,')
-    const daysInMonth = moment(month).daysInMonth()
-    return Array.from({ length: daysInMonth }, (_, i) => i + 1)
-}
-
-// console.log(moment(['2021', '0']).locale('ru').format('YYYY-MM'))
-// console.log(moment([2021, 'июль', '2']).locale('ru').format('D MMMM'), '[4242424')
-const months: IDate = {
-    monthRu: locale('ru'),
-    monthEu: locale('en'),
-}
-
-export const DateApi = {
-    fetchDate() {
-        return months
+export const MonthApi = {
+    fetchTheme(): Promise<IMonths> {
+        return axios.get('/months').then(({ data }) => data)
     },
 }
+
 export class MyDate {
     currentMonth: string
     constructor(currentMonth: string) {

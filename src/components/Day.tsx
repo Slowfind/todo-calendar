@@ -36,7 +36,6 @@ export const Day: React.FC = ({
 }: any) => {
     const classes = useStyles()
     const { fullDaysInMonth } = new MyDate(monthEu)
-
     return (
         <Grid container spacing={4}>
             {fullDaysInMonth.map((i) => (
@@ -45,7 +44,12 @@ export const Day: React.FC = ({
                         className={`${classes.link} ${classes.dayCard}`}
                         to={{
                             pathname: `/${id}/${i}`,
-                            state: monthEu,
+                            state: {
+                                months: {
+                                    monthRu,
+                                    monthEu,
+                                },
+                            },
                         }}
                     >
                         <Box fontWeight="700" position="absolute" bottom="0" right="0" p={1}>

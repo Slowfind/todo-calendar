@@ -6,12 +6,12 @@ import { TodoForm } from './TodoForm'
 import { TodoList } from './TodoList'
 
 declare var confirm: (question: string) => boolean
-export const Todos: React.FC = () => {
+export const Todos: React.FC = ({ location: { pathname, state } }: any) => {
     const [todos, setTodos] = React.useState<ITodo[]>([])
 
-    const addHandler = (todoText: string) => {
+    const addHandler = (text: string) => {
         const newTodo: ITodo = {
-            todoText,
+            text,
             id: Date.now(),
             completed: false,
         }

@@ -5,13 +5,12 @@ export enum LoadingState {
     NEVER = 'NEVER',
 }
 
-export interface IDate {
-    monthRu: string[]
-    monthEu: string[]
+export interface IMonths {
+    ru: string[]
+    eu: string[]
 }
 
-export interface IDateState {
-    month: string | null
-    date: IDate
+export interface IMonthsState {
+    months: IMonths
     loadingState: LoadingState
 }

@@ -1,0 +1,6 @@
+{
+    "months": {
+        "ru": ["Январь", "Февраль", "Март", "Апрель ", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+        "eu": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
+    }
+}

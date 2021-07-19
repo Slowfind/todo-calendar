@@ -40,13 +40,14 @@ export const TodoList: React.FC<TTodo> = ({ todos, removeTodo, toggleTodo }) => 
     }
     return (
         <List>
-            {todos.map((todo: any, i: number) => {
+            {todos.map((todo) => {
+                console.log(todo)
                 return (
-                    <ListItem key={todo.id} role={undefined} dense button onClick={toggleTodo.bind(null, todo.id)}>
+                    <ListItem key={todo.id} dense button onClick={() => toggleTodo(todo.id)}>
                         <ListItemIcon>
                             <Checkbox edge="start" checked={todo.completed} tabIndex={-1} disableRipple />
                         </ListItemIcon>
-                        <ListItemText primary={todo.todoText} />
+                        <ListItemText primary={todo.text} />
                         <ListItemSecondaryAction>
                             <IconButton className={classes.icon} color="primary" edge="end" aria-label="comments">
                                 <EditIcon />

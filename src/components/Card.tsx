@@ -3,11 +3,7 @@ import { deepPurple } from '@material-ui/core/colors'
 import Grid from '@material-ui/core/Grid/Grid'
 import { makeStyles } from '@material-ui/styles'
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { fetchDate } from '../store/ducks/dates/actionCreators'
-import { IDate, IDateState } from '../store/ducks/dates/contracts/state'
-import { selectIsLoading, selectMonthEu, selectMonthRu } from '../store/ducks/dates/selectors'
 
 const useStyles = makeStyles(() => ({
     link: {
@@ -27,17 +23,13 @@ const useStyles = makeStyles(() => ({
         fontWeight: 700,
     },
 }))
-export const Card: React.FC<IDateState> = () => {
+interface IPr {
+    monthEu: string[]
+    monthRu: string[]
+    isLoading: boolean
+}
+export const Card: React.FC<IPr> = ({ monthEu, monthRu, isLoading }) => {
     const classes = useStyles()
-
-    const dispatch = useDispatch()
-
-    const monthEu: IDate['monthEu'] = useSelector(selectMonthEu)
-    const monthRu: IDate['monthRu'] = useSelector(selectMonthRu)
-    const isLoading = useSelector(selectIsLoading)
-    React.useEffect(() => {
-        dispatch(fetchDate())
-    }, [dispatch])
 
     return (
         <Grid container spacing={4}>

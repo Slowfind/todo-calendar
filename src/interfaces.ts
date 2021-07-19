@@ -1,10 +1,10 @@
 export interface ITodo {
-    todoText: string
+    text: string
     id: number
     completed: boolean
 }
 export interface ITodoFormProps {
-    addTodo(todoText: string): void
+    addTodo(text: string): void
 }
 
 export type TTodo = {

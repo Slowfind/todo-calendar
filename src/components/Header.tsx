@@ -8,8 +8,11 @@ import { BackButton } from './BackButton'
 const Header: React.FC = ({ location: { pathname, state } }: any) => {
     const pluralizeMonths = (state: any, pathname: any) => {
         const pathnameNumber = pathname.replace(/\D/g, '')
-        if (state && pathname !== undefined) {
-            return new Pluralize(state, pathnameNumber).pluralizeMonths
+        if (state !== undefined) {
+            const {
+                months: { monthEu },
+            } = state
+            return new Pluralize(monthEu, pathnameNumber).pluralizeMonths
         }
         return null
     }
