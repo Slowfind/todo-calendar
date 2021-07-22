@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid/Grid'
 import { makeStyles } from '@material-ui/styles'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { TMonths } from '../interfaces'
 
 const useStyles = makeStyles(() => ({
     link: {
@@ -23,12 +24,7 @@ const useStyles = makeStyles(() => ({
         fontWeight: 700,
     },
 }))
-interface IPr {
-    monthEu: string[]
-    monthRu: string[]
-    isLoading: boolean
-}
-export const Card: React.FC<IPr> = ({ monthEu, monthRu, isLoading }) => {
+export const Card: React.FC<TMonths> = ({ monthEu, monthRu, isLoading }) => {
     const classes = useStyles()
 
     return (
@@ -39,12 +35,11 @@ export const Card: React.FC<IPr> = ({ monthEu, monthRu, isLoading }) => {
                         <Box borderRadius={4} boxShadow={5} className={classes.card}>
                             <Link
                                 to={{
-                                    pathname: `/${monthEu[i].toLowerCase()}`,
+                                    pathname: `/${monthEu[i]}`,
                                     state: {
-                                        months: {
-                                            monthRu: monthRu[i],
-                                            monthEu: monthEu[i],
-                                        },
+                                        monthRu: monthRu[i],
+                                        monthEu: monthEu[i],
+                                        day: null,
                                     },
                                 }}
                                 className={`${classes.textCenter} ${classes.padding4} ${classes.link}`}

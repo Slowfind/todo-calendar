@@ -41,7 +41,6 @@ export const TodoList: React.FC<TTodo> = ({ todos, removeTodo, toggleTodo }) => 
     return (
         <List>
             {todos.map((todo) => {
-                console.log(todo)
                 return (
                     <ListItem key={todo.id} dense button onClick={() => toggleTodo(todo.id)}>
                         <ListItemIcon>

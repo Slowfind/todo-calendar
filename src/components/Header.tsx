@@ -1,18 +1,19 @@
 import { AppBar, Toolbar, Typography, Container } from '@material-ui/core'
 import Box from '@material-ui/core/Box/Box'
 import React from 'react'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Route, Switch, useLocation, withRouter } from 'react-router-dom'
+import { ILocationState } from '../interfaces'
 import { Pluralize } from '../services/api/date'
 import { BackButton } from './BackButton'
 
-const Header: React.FC = ({ location: { pathname, state } }: any) => {
-    const pluralizeMonths = (state: any, pathname: any) => {
-        const pathnameNumber = pathname.replace(/\D/g, '')
+const Header: React.FC = () => {
+    const { state } = useLocation<ILocationState>()
+    console.log(state)
+    const pluralizeMonths = (state: ILocationState) => {
         if (state !== undefined) {
-            const {
-                months: { monthEu },
-            } = state
-            return new Pluralize(monthEu, pathnameNumber).pluralizeMonths
+            const { monthEu, day } = state
+
+            return new Pluralize(monthEu, day).pluralizeMonths
         }
         return null
     }
@@ -29,7 +30,7 @@ const Header: React.FC = ({ location: { pathname, state } }: any) => {
                                 <BackButton />
                             </Box>
                             <Box>
-                                <Typography variant="h1">{state?.months?.monthRu}</Typography>
+                                <Typography variant="h1">{state?.monthRu}</Typography>
                             </Box>
                         </Route>
                         <Route path="/:id/:id" exact>
@@ -37,7 +38,7 @@ const Header: React.FC = ({ location: { pathname, state } }: any) => {
                                 <BackButton />
                             </Box>
                             <Box>
-                                <Typography variant="h1">Список дел на {pluralizeMonths(state, pathname)}</Typography>
+                                <Typography variant="h1">Список задач на {pluralizeMonths(state)}</Typography>
                             </Box>
                         </Route>
                     </Switch>

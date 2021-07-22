@@ -2,10 +2,14 @@ import moment from 'moment'
 import 'moment/min/locales.min'
 import { IMonths } from '../../store/ducks/dates/contracts/state'
 import axios from 'axios'
+import { ITodo } from '../../store/ducks/todos/contracts/state'
 
-export const MonthApi = {
-    fetchTheme(): Promise<IMonths> {
+export const DateApi = {
+    fetchMonth(): Promise<IMonths> {
         return axios.get('/months').then(({ data }) => data)
+    },
+    addTodo(payload: ITodo): Promise<ITodo> {
+        return axios.post('/todos', payload).then(({ data }) => data)
     },
 }
 

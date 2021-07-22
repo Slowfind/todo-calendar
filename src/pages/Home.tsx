@@ -18,16 +18,13 @@ export const Home: React.FC = () => {
     const monthEu = useSelector(selectMonthEu)
     const monthRu = useSelector(selectMonthRu)
     const isLoading = useSelector(selectIsLoading)
-    console.log(monthEu)
     React.useEffect(() => {
         dispatch(fetchDate())
     }, [dispatch])
 
     return (
         <Switch>
-            <Route exact path="/">
-                <Card monthEu={monthEu} monthRu={monthRu} isLoading={isLoading} />
-            </Route>
+            <Route exact path="/" render={() => <Card monthEu={monthEu} monthRu={monthRu} isLoading={isLoading} />} />
 
             <Route exact path="/:id" component={Day} />
 

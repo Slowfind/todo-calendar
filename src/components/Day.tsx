@@ -26,9 +26,7 @@ const useStyles = makeStyles(() => ({
 
 export const Day: React.FC = ({
     location: {
-        state: {
-            months: { monthRu, monthEu },
-        },
+        state: { monthRu, monthEu },
     },
     match: {
         params: { id },
@@ -45,10 +43,9 @@ export const Day: React.FC = ({
                         to={{
                             pathname: `/${id}/${i}`,
                             state: {
-                                months: {
-                                    monthRu,
-                                    monthEu,
-                                },
+                                monthRu,
+                                monthEu,
+                                day: i,
                             },
                         }}
                     >

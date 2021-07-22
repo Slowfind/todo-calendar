@@ -1,6 +1,54 @@
 {
-    "months": {
-        "ru": ["Январь", "Февраль", "Март", "Апрель ", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-        "eu": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
+  "months": {
+    "ru": [
+      "Январь",
+      "Февраль",
+      "Март",
+      "Апрель ",
+      "Май",
+      "Июнь",
+      "Июль",
+      "Август",
+      "Сентябрь",
+      "Октябрь",
+      "Ноябрь",
+      "Декабрь"
+    ],
+    "eu": [
+      "january",
+      "february",
+      "march",
+      "april",
+      "may",
+      "june",
+      "july",
+      "august",
+      "september",
+      "october",
+      "november",
+      "december"
+    ]
+  },
+  "todos": [
+    {
+      "months": {
+        "monthRu": "Февраль",
+        "monthEu": "february",
+        "day": 2
+      },
+      "text": "53535",
+      "id": 1626960319819,
+      "completed": false
+    },
+    {
+      "months": {
+        "monthRu": "Февраль",
+        "monthEu": "february",
+        "day": 2
+      },
+      "text": "hhhrh",
+      "id": 1626960464923,
+      "completed": false
     }
+  ]
 }

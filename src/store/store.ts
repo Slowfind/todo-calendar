@@ -1,6 +1,7 @@
 import { applyMiddleware, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import { IMonths, IMonthsState } from './ducks/dates/contracts/state'
+import { IMonthsState } from './ducks/dates/contracts/state'
+import { ITodoState } from './ducks/todos/contracts/state'
 import { rootReducer } from './rootReducer'
 import rootSaga from './saga'
 
@@ -16,6 +17,7 @@ export const delay = (time: number) => new Promise((resolve) => setTimeout(resol
 
 export interface RootState {
     date: IMonthsState
+    todo: ITodoState
 }
 
 export const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose

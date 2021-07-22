@@ -1,8 +1,5 @@
-export interface ITodo {
-    text: string
-    id: number
-    completed: boolean
-}
+import { ITodo } from './store/ducks/todos/contracts/state'
+
 export interface ITodoFormProps {
     addTodo(text: string): void
 }
@@ -11,4 +8,16 @@ export type TTodo = {
     todos: ITodo[]
     removeTodo: (id: number) => void
     toggleTodo: (id: number) => void
+}
+
+export type TMonths = {
+    monthEu: string[]
+    monthRu: string[]
+    isLoading: boolean
+}
+
+export interface ILocationState {
+    monthRu: string
+    monthEu: string
+    day: number
 }

@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { MonthApi } from '../../../services/api/date'
+import { DateApi } from '../../../services/api/date'
 import { delay } from '../../store'
 import { setDate, setDateLoading } from './actionCreators'
 import { DatesActionsType } from './contracts/actionTypes'
@@ -7,7 +7,7 @@ import { LoadingState } from './contracts/state'
 
 export function* fetchDateRequest(): any {
     try {
-        const items = yield call(MonthApi.fetchTheme)
+        const items = yield call(DateApi.fetchMonth)
         yield call(delay, 500)
         yield put(setDate(items))
     } catch (error) {
