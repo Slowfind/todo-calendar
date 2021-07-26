@@ -1,22 +1,27 @@
 import { Box } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
+import { ILocationState } from '../../interfaces'
+import { fetchAddTodo, fetchTodo } from '../../store/ducks/todos/actionCreators'
+import { selectTodosItems } from '../../store/ducks/todos/selectors'
 import { TodoForm } from './TodoForm'
 
 declare var confirm: (question: string) => boolean
 export const Todos: React.FC = () => {
     // const { state } = useLocation<ILocationState>()
-    // const dispatch = useDispatch()
-
+    const dispatch = useDispatch()
+    const todos = useSelector(selectTodosItems)
+    React.useEffect(() => {
+        dispatch(fetchTodo())
+    }, [dispatch])
+    console.log(todos, 'todos')
     // // const [todos, setTodos] = React.useState<ITodo[]>([])
-    // const addHandler = (state: ILocationState, text: string) => {
-    //     // const newTodo: ITodo = {
-    //     //     text,
-    //     //     id: Date.now(),
-    //     //     completed: false,
+    // const addHandler = (text: string) => {
     //     // }
     //     // setTodos((prev) => [...prev, newTodo])
-    //     dispatch(fetchTodo(text, state))
+    //     dispatch(fetchAddTodo(text, state))
     // }
     // const removeHandler = (id: number) => {
     //     const shoudRemove = confirm('Вы уверены, что хотите удалить элемент?')

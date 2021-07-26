@@ -4,9 +4,12 @@ import { IMonths } from '../../store/ducks/dates/contracts/state'
 import axios from 'axios'
 import { ITodo } from '../../store/ducks/todos/contracts/state'
 
-export const DateApi = {
+export const calendarApi = {
     fetchMonth(): Promise<IMonths> {
         return axios.get('/months').then(({ data }) => data)
+    },
+    fetchTodo(): Promise<ITodo> {
+        return axios.get('/todos').then(({ data }) => data)
     },
     addTodo(payload: ITodo): Promise<ITodo> {
         return axios.post('/todos', payload).then(({ data }) => data)

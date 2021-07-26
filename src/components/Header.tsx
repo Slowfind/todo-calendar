@@ -8,14 +8,13 @@ import { BackButton } from './BackButton'
 
 const Header: React.FC = () => {
     const { state } = useLocation<ILocationState>()
-    console.log(state)
     const pluralizeMonths = (state: ILocationState) => {
         if (state !== undefined) {
             const { monthEu, day } = state
 
             return new Pluralize(monthEu, day).pluralizeMonths
         }
-        return null
+        return false
     }
     return (
         <AppBar color="primary" position="sticky">

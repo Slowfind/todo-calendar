@@ -1,10 +1,16 @@
-// export enum LoadingState {
-//     LOADING = 'LOADING',
-//     ERROR = 'ERROR',
-//     NEVER = 'NEVER',
-// }
-
 import { ILocationState } from '../../../../interfaces'
+export enum LoadingState {
+    LOADED = 'LOADED',
+    LOADING = 'LOADING',
+    ERROR = 'ERROR',
+    NEVER = 'NEVER',
+}
+
+export enum AddTodoState {
+    LOADING = 'LOADING',
+    ERROR = 'ERROR',
+    NEVER = 'NEVER',
+}
 
 export interface ITodo {
     months: ILocationState
@@ -14,5 +20,7 @@ export interface ITodo {
 }
 
 export interface ITodoState {
-    todo?: ITodo[]
+    todos?: ITodo[]
+    loadingState: LoadingState
+    addTodoState: AddTodoState
 }

@@ -1,10 +1,19 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { DateApi } from '../../../services/api/date'
-import { addTodo } from './actionCreators'
-import { IFetchTodoAction, TActionsTodo } from './contracts/actionTypes'
-import { ITodo } from './contracts/state'
+import { calendarApi } from '../../../services/api/date'
+import { addTodo, setAddTodo, setLoadingTodo, setTodo } from './actionCreators'
+import { IFetchAddTodoAction, TActionsTodo } from './contracts/actionTypes'
+import { AddTodoState, ITodo, LoadingState } from './contracts/state'
 
-export function* ff({ payload, months }: IFetchTodoAction): any {
+export function* fetchTodoRequest(): any {
+    try {
+        const todos = yield call(calendarApi.fetchTodo)
+        yield put(setTodo(todos))
+    } catch (error) {
+        yield put(setLoadingTodo(LoadingState.ERROR))
+    }
+}
+
+export function* fetchAddTodoRequest({ payload, months }: IFetchAddTodoAction): any {
     try {
         const newTodo: ITodo = {
             months,
@@ -12,14 +21,14 @@ export function* ff({ payload, months }: IFetchTodoAction): any {
             id: Date.now(),
             completed: false,
         }
-        const todo = yield call(DateApi.addTodo, newTodo)
-        console.log(todo)
+        const todo = yield call(calendarApi.addTodo, newTodo)
         yield put(addTodo(todo))
     } catch (error) {
-        console.log(error)
+        yield put(setAddTodo(AddTodoState.ERROR))
     }
 }
 
 export function* todoSaga() {
-    yield takeEvery(TActionsTodo.FETCH_TODO, ff)
+    yield takeEvery(TActionsTodo.FETCH_TODOS, fetchTodoRequest)
+    yield takeEvery(TActionsTodo.FETCH_ADD_TODO, fetchAddTodoRequest)
 }
