@@ -3,8 +3,10 @@ import { deepPurple } from '@material-ui/core/colors'
 import Grid from '@material-ui/core/Grid/Grid'
 import { makeStyles } from '@material-ui/styles'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { TMonths } from '../interfaces'
+import { selectMonthEu, selectMonthRu } from '../store/ducks/dates/selectors'
+import { selectIsLoading } from '../store/ducks/todos/selectors'
 
 const useStyles = makeStyles(() => ({
     link: {
@@ -24,9 +26,11 @@ const useStyles = makeStyles(() => ({
         fontWeight: 700,
     },
 }))
-export const Card: React.FC<TMonths> = ({ monthEu, monthRu, isLoading }) => {
+export const Card: React.FC = () => {
     const classes = useStyles()
-
+    const monthEu = useSelector(selectMonthEu)
+    const monthRu = useSelector(selectMonthRu)
+    const isLoading = useSelector(selectIsLoading)
     return (
         <Grid container spacing={4}>
             {!isLoading ? (

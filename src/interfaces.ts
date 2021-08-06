@@ -1,13 +1,13 @@
 import { ITodo } from './store/ducks/todos/contracts/state'
 
 export interface ITodoFormProps {
-    addTodo(text: string): any
+    addTodo(text: string): void
 }
 
 export type TTodo = {
-    todos: ITodo[]
-    removeTodo: (id: number) => void
-    toggleTodo: (id: number) => void
+    todos?: ITodo[]
+    onRemove: (id: ITodo['id']) => void
+    onToggle: (id: ITodo['id'], completed: ITodo['completed']) => void
 }
 
 export type TMonths = {

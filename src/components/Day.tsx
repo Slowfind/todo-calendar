@@ -53,7 +53,7 @@ export const Day: React.FC = ({
                             <Box component="span">{i}</Box>
                         </Box>
                         <Box>
-                            <List dense component="nav" aria-label="main mailbox folders">
+                            <List dense>
                                 <ListItem>
                                     <ListItemText primary="Выучить реакт" />
                                 </ListItem>

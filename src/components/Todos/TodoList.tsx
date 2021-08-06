@@ -12,6 +12,7 @@ import EditIcon from '@material-ui/icons/Edit'
 import makeStyles from '@material-ui/styles/makeStyles'
 import React from 'react'
 import { TTodo } from '../../interfaces'
+import { ITodo } from '../../store/ducks/todos/contracts/state'
 
 const useStyles = makeStyles(() => ({
     icon: {
@@ -21,15 +22,16 @@ const useStyles = makeStyles(() => ({
     },
 }))
 
-export const TodoList: React.FC<TTodo> = ({ todos, removeTodo, toggleTodo }) => {
+export const TodoList: React.FC<TTodo> = ({ todos, onRemove, onToggle }) => {
     const classes = useStyles()
 
-    const removeHandler = (e: React.MouseEvent, id: number) => {
-        e.preventDefault()
-        removeTodo(id)
+    const removeHandler = (id: ITodo['id']) => {
+        onRemove(id)
     }
-
-    if (todos.length === 0) {
+    const toggleHandler = (id: ITodo['id'], completed: ITodo['completed']) => {
+        onToggle(id, completed)
+    }
+    if (todos === undefined) {
         return (
             <Box textAlign="center" mt={2}>
                 <Typography variant="body1" className="center">
@@ -42,7 +44,7 @@ export const TodoList: React.FC<TTodo> = ({ todos, removeTodo, toggleTodo }) => 
         <List>
             {todos.map((todo) => {
                 return (
-                    <ListItem key={todo.id} dense button onClick={() => toggleTodo(todo.id)}>
+                    <ListItem key={todo.id} dense button onClick={() => toggleHandler(todo.id, todo.completed)}>
                         <ListItemIcon>
                             <Checkbox edge="start" checked={todo.completed} tabIndex={-1} disableRipple />
                         </ListItemIcon>
@@ -51,7 +53,7 @@ export const TodoList: React.FC<TTodo> = ({ todos, removeTodo, toggleTodo }) => 
                             <IconButton className={classes.icon} color="primary" edge="end" aria-label="comments">
                                 <EditIcon />
                             </IconButton>
-                            <IconButton onClick={(e) => removeHandler(e, todo.id)} color="secondary" edge="end" aria-label="comments">
+                            <IconButton onClick={() => removeHandler(todo.id)} color="secondary" edge="end" aria-label="comments">
                                 <DeleteIcon />
                             </IconButton>
                         </ListItemSecondaryAction>

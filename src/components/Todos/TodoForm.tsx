@@ -1,29 +1,20 @@
 import TextField from '@material-ui/core/TextField'
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom'
-import { ILocationState, ITodoFormProps } from '../../interfaces'
-import { fetchAddTodo } from '../../store/ducks/todos/actionCreators'
+import { ITodoFormProps } from '../../interfaces'
 
-export const TodoForm: React.FC = () => {
+export const TodoForm: React.FC<ITodoFormProps> = ({ addTodo }) => {
     const inputRef = React.useRef<HTMLInputElement>(null)
-    const { state } = useLocation<ILocationState>()
-    const dispatch = useDispatch()
 
-    const keyPressHandler = (event: React.KeyboardEvent) => {
-        let text = inputRef.current!.value
-        if (text.length >= 1) {
-            if (event.key === 'Enter') {
-                dispatch(fetchAddTodo(text, state))
-                text = ''
-            }
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        if (inputRef.current!.value.length >= 1) {
+            addTodo(inputRef.current!.value)
         }
-        return false
+        inputRef.current!.value = ''
     }
-
     return (
-        <form>
-            <TextField onKeyPress={keyPressHandler} inputRef={inputRef} fullWidth id="todo" placeholder="Введите задачу" />
+        <form onSubmit={handleSubmit}>
+            <TextField inputRef={inputRef} fullWidth id="todo" placeholder="Введите задачу" />
         </form>
     )
 }

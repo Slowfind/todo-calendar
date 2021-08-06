@@ -32,32 +32,12 @@
   "todos": [
     {
       "months": {
-        "monthRu": "Февраль",
-        "monthEu": "february",
+        "monthRu": "Январь",
+        "monthEu": "january",
         "day": 2
       },
-      "text": "fafwaff",
-      "id": 1627298982006,
-      "completed": false
-    },
-    {
-      "months": {
-        "monthRu": "Февраль",
-        "monthEu": "february",
-        "day": 2
-      },
-      "text": "fawfaw",
-      "id": 1627298985870,
-      "completed": false
-    },
-    {
-      "months": {
-        "monthRu": "Февраль",
-        "monthEu": "february",
-        "day": 2
-      },
-      "text": "fefesf",
-      "id": 1627298988437,
+      "text": "1313",
+      "id": 1628236747124,
       "completed": false
     }
   ]

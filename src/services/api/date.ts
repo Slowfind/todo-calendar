@@ -14,6 +14,12 @@ export const calendarApi = {
     addTodo(payload: ITodo): Promise<ITodo> {
         return axios.post('/todos', payload).then(({ data }) => data)
     },
+    removeTodo(payload: ITodo['id']): Promise<ITodo> {
+        return axios.delete('/todos/' + payload).then(({ data }) => data)
+    },
+    toggleTodo(payload: ITodo['id'], completed: ITodo['completed']): Promise<ITodo> {
+        return axios.patch('/todos/' + payload, { completed }).then(({ data }) => data)
+    },
 }
 
 export class MyDate {

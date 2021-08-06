@@ -1,11 +1,11 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { Card } from '../components/Card'
 import { Day } from '../components/Day'
 import { Todos } from '../components/Todos'
 import { fetchDate } from '../store/ducks/dates/actionCreators'
-import { selectIsLoading, selectMonthEu, selectMonthRu } from '../store/ducks/dates/selectors'
+import { fetchTodo } from '../store/ducks/todos/actionCreators'
 
 /* туду
 1. сделать тут передачу месяцев через json-server
@@ -14,17 +14,14 @@ import { selectIsLoading, selectMonthEu, selectMonthRu } from '../store/ducks/da
 
 export const Home: React.FC = () => {
     const dispatch = useDispatch()
-
-    const monthEu = useSelector(selectMonthEu)
-    const monthRu = useSelector(selectMonthRu)
-    const isLoading = useSelector(selectIsLoading)
     React.useEffect(() => {
         dispatch(fetchDate())
+        dispatch(fetchTodo())
     }, [dispatch])
 
     return (
         <Switch>
-            <Route exact path="/" render={() => <Card monthEu={monthEu} monthRu={monthRu} isLoading={isLoading} />} />
+            <Route exact path="/" component={Card} />
 
             <Route exact path="/:id" component={Day} />
 

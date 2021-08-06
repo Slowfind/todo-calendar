@@ -32,6 +32,29 @@ export const todoReducer = produce((draft: Draft<ITodoState>, action: TTodoActio
             draft.todos?.push(action.payload)
             draft.addTodoState = AddTodoState.NEVER
             break
+        case TActionsTodo.FETCH_REMOVE_TODO:
+            draft.addTodoState = AddTodoState.LOADING
+            break
+        case TActionsTodo.SET_REMOVE_TODO:
+            draft.addTodoState = action.payload
+            break
+        case TActionsTodo.REMOVE_TODO:
+            draft.todos = draft.todos?.filter((todo) => todo.id !== action.payload)
+            break
+        case TActionsTodo.FETCH_TOGGLE_TODO:
+            draft.addTodoState = AddTodoState.LOADING
+            break
+        case TActionsTodo.SET_TOGGLE_TODO:
+            draft.addTodoState = action.payload
+            break
+        case TActionsTodo.TOGGLE_TODO:
+            draft.todos?.map((todo) => {
+                if (todo.id === action.payload) {
+                    todo.completed = !todo.completed
+                }
+                return todo
+            })
+            break
         default:
             break
     }
