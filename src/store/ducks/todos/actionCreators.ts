@@ -13,7 +13,7 @@ import {
     IFetchToggleTodoAction,
     IFetchRemoveTodoAction,
 } from './contracts/actionTypes'
-import { AddTodoState, ITodo, ITodoState, LoadingState } from './contracts/state'
+import { TodoStateChanger, ITodo, ITodoState, LoadingState } from './contracts/state'
 
 export const setTodo = (payload: ITodoState['todos']): ISetTodoAction => ({
     type: TActionsTodo.SET_TODOS,
@@ -39,7 +39,7 @@ export const fetchAddTodo = (payload: string, months: ITodo['months']): IFetchAd
     payload,
     months,
 })
-export const setAddTodo = (payload: AddTodoState): ISetAddTodoAction => ({
+export const setAddTodo = (payload: TodoStateChanger): ISetAddTodoAction => ({
     type: TActionsTodo.SET_ADD_TODO,
     payload,
 })
@@ -54,7 +54,7 @@ export const removeTodo = (payload: ITodo['id']): IRemoveTodoAction => ({
     payload,
 })
 
-export const setRemoveTodo = (payload: AddTodoState): ISetRemoveTodoAction => ({
+export const setRemoveTodo = (payload: TodoStateChanger): ISetRemoveTodoAction => ({
     type: TActionsTodo.SET_REMOVE_TODO,
     payload,
 })
@@ -68,7 +68,7 @@ export const toggleTodo = (payload: ITodo['id']): IToggleTodoAction => ({
     type: TActionsTodo.TOGGLE_TODO,
     payload,
 })
-export const setToggleTodo = (payload: AddTodoState): ISetToggleTodoAction => ({
+export const setToggleTodo = (payload: TodoStateChanger): ISetToggleTodoAction => ({
     type: TActionsTodo.SET_TOGGLE_TODO,
     payload,
 })

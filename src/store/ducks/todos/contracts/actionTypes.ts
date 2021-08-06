@@ -1,5 +1,5 @@
 import { Action } from 'redux'
-import { AddTodoState, ITodo, ITodoState, LoadingState } from './state'
+import { TodoStateChanger, ITodo, ITodoState, LoadingState } from './state'
 
 export enum TActionsTodo {
     SET_TODOS = 'todos/SET_TODO',
@@ -45,7 +45,7 @@ export interface IFetchAddTodoAction extends Action<TActionsTodo> {
 
 export interface ISetAddTodoAction extends Action<TActionsTodo> {
     type: TActionsTodo.SET_ADD_TODO
-    payload: AddTodoState
+    payload: TodoStateChanger
 }
 /* --------- */
 
@@ -62,7 +62,7 @@ export interface IRemoveTodoAction extends Action<TActionsTodo> {
 
 export interface ISetRemoveTodoAction extends Action<TActionsTodo> {
     type: TActionsTodo.SET_REMOVE_TODO
-    payload: AddTodoState
+    payload: TodoStateChanger
 }
 /* ----------- */
 
@@ -79,7 +79,7 @@ export interface IToggleTodoAction extends Action<TActionsTodo> {
 
 export interface ISetToggleTodoAction extends Action<TActionsTodo> {
     type: TActionsTodo.SET_TOGGLE_TODO
-    payload: AddTodoState
+    payload: TodoStateChanger
 }
 /* ----------- */
 

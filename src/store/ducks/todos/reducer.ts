@@ -1,10 +1,10 @@
 import produce, { Draft } from 'immer'
 import { TActionsTodo, TTodoActions } from './contracts/actionTypes'
-import { AddTodoState, ITodo, ITodoState, LoadingState } from './contracts/state'
+import { TodoStateChanger, ITodo, ITodoState, LoadingState } from './contracts/state'
 
 const initialState: ITodoState = {
     todos: [] as ITodo[],
-    addTodoState: AddTodoState.NEVER,
+    todoStateChanger: TodoStateChanger.NEVER,
     loadingState: LoadingState.NEVER,
 }
 
@@ -22,30 +22,30 @@ export const todoReducer = produce((draft: Draft<ITodoState>, action: TTodoActio
             draft.loadingState = LoadingState.LOADED
             break
         case TActionsTodo.SET_ADD_TODO:
-            draft.addTodoState = action.payload
+            draft.todoStateChanger = action.payload
             break
         case TActionsTodo.FETCH_ADD_TODO:
-            draft.addTodoState = AddTodoState.LOADING
+            draft.todoStateChanger = TodoStateChanger.LOADING
             break
         case TActionsTodo.ADD_TODO:
             // @ts-ignore
             draft.todos?.push(action.payload)
-            draft.addTodoState = AddTodoState.NEVER
+            draft.todoStateChanger = TodoStateChanger.NEVER
             break
         case TActionsTodo.FETCH_REMOVE_TODO:
-            draft.addTodoState = AddTodoState.LOADING
+            draft.todoStateChanger = TodoStateChanger.LOADING
             break
         case TActionsTodo.SET_REMOVE_TODO:
-            draft.addTodoState = action.payload
+            draft.todoStateChanger = action.payload
             break
         case TActionsTodo.REMOVE_TODO:
             draft.todos = draft.todos?.filter((todo) => todo.id !== action.payload)
             break
         case TActionsTodo.FETCH_TOGGLE_TODO:
-            draft.addTodoState = AddTodoState.LOADING
+            draft.todoStateChanger = TodoStateChanger.LOADING
             break
         case TActionsTodo.SET_TOGGLE_TODO:
-            draft.addTodoState = action.payload
+            draft.todoStateChanger = action.payload
             break
         case TActionsTodo.TOGGLE_TODO:
             draft.todos?.map((todo) => {

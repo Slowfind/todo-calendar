@@ -2,7 +2,7 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import { calendarApi } from '../../../services/api/date'
 import { addTodo, removeTodo, setAddTodo, setLoadingTodo, setRemoveTodo, setTodo, setToggleTodo, toggleTodo } from './actionCreators'
 import { IFetchAddTodoAction, IFetchRemoveTodoAction, IFetchToggleTodoAction, TActionsTodo } from './contracts/actionTypes'
-import { AddTodoState, ITodo, LoadingState } from './contracts/state'
+import { TodoStateChanger, ITodo, LoadingState } from './contracts/state'
 
 export function* fetchTodoRequest(): any {
     try {
@@ -24,7 +24,7 @@ export function* fetchAddTodoRequest({ payload, months }: IFetchAddTodoAction): 
         const todo = yield call(calendarApi.addTodo, newTodo)
         yield put(addTodo(todo))
     } catch (error) {
-        yield put(setAddTodo(AddTodoState.ERROR))
+        yield put(setAddTodo(TodoStateChanger.ERROR))
     }
 }
 export function* fetchRemoveTodoRequest({ payload }: IFetchRemoveTodoAction): any {
@@ -32,7 +32,7 @@ export function* fetchRemoveTodoRequest({ payload }: IFetchRemoveTodoAction): an
         yield call(calendarApi.removeTodo, payload)
         yield put(removeTodo(payload))
     } catch (error) {
-        yield put(setRemoveTodo(AddTodoState.ERROR))
+        yield put(setRemoveTodo(TodoStateChanger.ERROR))
     }
 }
 
@@ -41,7 +41,7 @@ export function* fetchToggleTodoRequest({ payload, completed }: IFetchToggleTodo
         yield call(calendarApi.toggleTodo, payload, (completed = !completed))
         yield put(toggleTodo(payload))
     } catch (error) {
-        yield put(setToggleTodo(AddTodoState.ERROR))
+        yield put(setToggleTodo(TodoStateChanger.ERROR))
     }
 }
 

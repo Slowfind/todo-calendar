@@ -29,16 +29,5 @@
       "december"
     ]
   },
-  "todos": [
-    {
-      "months": {
-        "monthRu": "Январь",
-        "monthEu": "january",
-        "day": 2
-      },
-      "text": "1313",
-      "id": 1628236747124,
-      "completed": false
-    }
-  ]
+  "todos": []
 }

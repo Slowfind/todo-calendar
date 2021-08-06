@@ -6,7 +6,7 @@ export enum LoadingState {
     NEVER = 'NEVER',
 }
 
-export enum AddTodoState {
+export enum TodoStateChanger {
     LOADING = 'LOADING',
     ERROR = 'ERROR',
     NEVER = 'NEVER',
@@ -22,5 +22,5 @@ export interface ITodo {
 export interface ITodoState {
     todos?: ITodo[]
     loadingState: LoadingState
-    addTodoState: AddTodoState
+    todoStateChanger: TodoStateChanger
 }
