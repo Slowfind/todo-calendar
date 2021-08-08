@@ -1,12 +1,12 @@
+import { List, ListItem, ListItemText } from '@material-ui/core'
 import Box from '@material-ui/core/Box/Box'
 import Grid from '@material-ui/core/Grid/Grid'
-import List from '@material-ui/core/List/List'
-import ListItem from '@material-ui/core/ListItem/ListItem'
-import ListItemText from '@material-ui/core/ListItemText/ListItemText'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { MyDate } from '../services/api/date'
+import { selectTodosItems } from '../store/ducks/todos/selectors'
 
 const useStyles = makeStyles(() => ({
     link: {
@@ -32,34 +32,40 @@ export const Day: React.FC = ({
         params: { id },
     },
 }: any) => {
+    const todos = useSelector(selectTodosItems)
     const classes = useStyles()
     const { fullDaysInMonth } = new MyDate(monthEu)
     return (
         <Grid container spacing={4}>
-            {fullDaysInMonth.map((i) => (
-                <Grid key={i} item xs={3}>
+            {fullDaysInMonth.map((day) => (
+                <Grid key={day} item xs={3}>
                     <Link
                         className={`${classes.link} ${classes.dayCard}`}
                         to={{
-                            pathname: `/${id}/${i}`,
+                            pathname: `/${id}/${day}`,
                             state: {
                                 monthRu,
                                 monthEu,
-                                day: i,
+                                day,
                             },
                         }}
                     >
                         <Box fontWeight="700" position="absolute" bottom="0" right="0" p={1}>
-                            <Box component="span">{i}</Box>
+                            <Box component="span">{day}</Box>
                         </Box>
                         <Box>
                             <List dense>
-                                <ListItem>
-                                    <ListItemText primary="Выучить реакт" />
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemText primary="Выучить тайпскрипт" />
-                                </ListItem>
+                                {todos?.map((todo) => {
+                                    if (todo?.months.day === day && todo?.months.monthEu === monthEu) {
+                                        return (
+                                            <ListItem key={todo.id}>
+                                                <ListItemText primary={todo.text} />
+                                            </ListItem>
+                                        )
+                                    }
+
+                                    return null
+                                })}
                             </List>
                         </Box>
                     </Link>

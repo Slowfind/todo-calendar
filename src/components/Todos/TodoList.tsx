@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
     },
 }))
 
-export const TodoList: React.FC<TTodo> = ({ todos, onRemove, onToggle }) => {
+export const TodoList: React.FC<TTodo> = ({ todos, onRemove, onToggle, month }) => {
     const classes = useStyles()
 
     const removeHandler = (id: ITodo['id']) => {
@@ -31,7 +31,7 @@ export const TodoList: React.FC<TTodo> = ({ todos, onRemove, onToggle }) => {
     const toggleHandler = (id: ITodo['id'], completed: ITodo['completed']) => {
         onToggle(id, completed)
     }
-    if (todos === undefined) {
+    if (todos?.length === 0) {
         return (
             <Box textAlign="center" mt={2}>
                 <Typography variant="body1" className="center">
@@ -42,23 +42,26 @@ export const TodoList: React.FC<TTodo> = ({ todos, onRemove, onToggle }) => {
     }
     return (
         <List>
-            {todos.map((todo) => {
-                return (
-                    <ListItem key={todo.id} dense button onClick={() => toggleHandler(todo.id, todo.completed)}>
-                        <ListItemIcon>
-                            <Checkbox edge="start" checked={todo.completed} tabIndex={-1} disableRipple />
-                        </ListItemIcon>
-                        <ListItemText primary={todo.text} />
-                        <ListItemSecondaryAction>
-                            <IconButton className={classes.icon} color="primary" edge="end" aria-label="comments">
-                                <EditIcon />
-                            </IconButton>
-                            <IconButton onClick={() => removeHandler(todo.id)} color="secondary" edge="end" aria-label="comments">
-                                <DeleteIcon />
-                            </IconButton>
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                )
+            {todos?.map((todo) => {
+                if (todo?.months.day === month.day && todo?.months.monthEu === month.monthEu) {
+                    return (
+                        <ListItem key={todo.id} dense button onClick={() => toggleHandler(todo.id, todo.completed)}>
+                            <ListItemIcon>
+                                <Checkbox edge="start" checked={todo.completed} tabIndex={-1} disableRipple />
+                            </ListItemIcon>
+                            <ListItemText primary={todo.text} />
+                            <ListItemSecondaryAction>
+                                <IconButton className={classes.icon} color="primary" edge="end" aria-label="comments">
+                                    <EditIcon />
+                                </IconButton>
+                                <IconButton onClick={() => removeHandler(todo.id)} color="secondary" edge="end" aria-label="comments">
+                                    <DeleteIcon />
+                                </IconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                    )
+                }
+                return null
             })}
         </List>
     )

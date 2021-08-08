@@ -15,7 +15,6 @@ export const Todos: React.FC = () => {
     const { state } = useLocation<ILocationState>()
     const dispatch = useDispatch()
     const todos = useSelector(selectTodosItems)
-    console.log(todos, 'todos')
     const addHandler = (text: string) => {
         dispatch(fetchAddTodo(text, state))
     }
@@ -26,7 +25,9 @@ export const Todos: React.FC = () => {
     const toggleHandler = (id: ITodo['id'], completed: ITodo['completed']) => {
         dispatch(fetchToggleTodo(id, completed))
     }
-
+    const todosThisMonth = todos?.filter((todo) => {
+        return todo?.months.day === state.day && todo?.months.monthEu === state.monthEu
+    })
     return (
         <Grid container spacing={2} direction="row" justify="center" alignItems="center">
             <Grid item xs={8}>
@@ -34,7 +35,7 @@ export const Todos: React.FC = () => {
                     <TodoForm addTodo={addHandler} />
                 </Box>
                 <Box>
-                    <TodoList onToggle={toggleHandler} onRemove={removeHandler} todos={todos} />
+                    <TodoList onToggle={toggleHandler} onRemove={removeHandler} month={state} todos={todosThisMonth} />
                 </Box>
             </Grid>
         </Grid>

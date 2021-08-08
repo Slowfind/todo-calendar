@@ -8,6 +8,7 @@ export type TTodo = {
     todos?: ITodo[]
     onRemove: (id: ITodo['id']) => void
     onToggle: (id: ITodo['id'], completed: ITodo['completed']) => void
+    month: ILocationState
 }
 
 export type TMonths = {
