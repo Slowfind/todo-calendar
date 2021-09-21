@@ -38,7 +38,7 @@
       },
       "text": "214",
       "id": 1628340415007,
-      "completed": false
+      "completed": true
     },
     {
       "months": {
@@ -48,7 +48,7 @@
       },
       "text": "53523\\",
       "id": 1628340416446,
-      "completed": false
+      "completed": true
     },
     {
       "months": {
@@ -68,6 +68,86 @@
       },
       "text": "\\",
       "id": 1628343856990,
+      "completed": false
+    },
+    {
+      "months": {
+        "monthRu": "Январь",
+        "monthEu": "january",
+        "day": 1
+      },
+      "text": "1",
+      "id": 1628406519116,
+      "completed": true
+    },
+    {
+      "months": {
+        "monthRu": "Январь",
+        "monthEu": "january",
+        "day": 1
+      },
+      "text": "2",
+      "id": 1628406519929,
+      "completed": false
+    },
+    {
+      "months": {
+        "monthRu": "Январь",
+        "monthEu": "january",
+        "day": 1
+      },
+      "text": "3",
+      "id": 1628406520713,
+      "completed": false
+    },
+    {
+      "months": {
+        "monthRu": "Январь",
+        "monthEu": "january",
+        "day": 1
+      },
+      "text": "4",
+      "id": 1628406521713,
+      "completed": false
+    },
+    {
+      "months": {
+        "monthRu": "Январь",
+        "monthEu": "january",
+        "day": 2
+      },
+      "text": "//",
+      "id": 1630497163346,
+      "completed": false
+    },
+    {
+      "months": {
+        "monthRu": "Январь",
+        "monthEu": "january",
+        "day": 2
+      },
+      "text": "\\\\",
+      "id": 1630497169666,
+      "completed": false
+    },
+    {
+      "months": {
+        "monthRu": "Январь",
+        "monthEu": "january",
+        "day": 23
+      },
+      "text": "42442",
+      "id": 1630499688458,
+      "completed": false
+    },
+    {
+      "months": {
+        "monthRu": "Февраль",
+        "monthEu": "february",
+        "day": 6
+      },
+      "text": "424242",
+      "id": 1630503100836,
       "completed": false
     }
   ]
